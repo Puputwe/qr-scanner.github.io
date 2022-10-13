@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>scan kode ayam</title>
+    <style>
+        .content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.back{
+    background-color: rgb(41, 136, 79);
+    width: 80px;
+    height: 30px;
+}
+    </style>
+    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+</head>
+
+<body style="background-color: #ffff;">
+    <button class="back">
+        <a  href="http://recording-telur.herokuapp.com/scan/produksi" style="text-decoration:none; color: rgb(255, 255, 255);">Kembali</a>
+    </button>
+    <div class="content">
+        <h1 style="text-align: center; color:black">Scan Kode Ayam</h1>
+        <video width="520" height="340" id="result"></video>
+    </div>
+    <script>
+        let scanner = new Instascan.Scanner({
+            video: document.getElementById('result')
+        });
+        scanner.addListener('scan', function (content) {
+            const data = content;
+
+            const getid = data.substring(data.indexOf('_') + 1);
+            const lower = parseInt(getid);
+            var url = "http://recording-telur.herokuapp.com/form/"+lower+"/produksi";
+            // alert(url);
+            // url = url.replace(':lower', lower);
+            window.location.href = url;
+        });
+        Instascan.Camera.getCameras().then(cameras => {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+            } else {
+                console.error("No cameras found!");
+            }
+        });
+    </script>
+</body>
+
+</html>
