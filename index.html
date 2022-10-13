@@ -36,7 +36,7 @@
         scanner.addListener('scan', function (content) {
             const data = content;
 
-            const getid = data.substring(data.indexOf('_') + 1);
+            const getid = data;
             const lower = parseInt(getid);
             var url = "http://recording-telur.herokuapp.com/form/"+lower+"/produksi";
             // alert(url);
