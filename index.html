@@ -44,11 +44,19 @@
             window.location.href = url;
         });
         Instascan.Camera.getCameras().then(cameras => {
-            if (cameras.length > 0) {
-                scanner.start(cameras[0]);
-            } else {
-                console.error("No cameras found!");
-            }
+           Instascan.Camera.getCameras().then(cameras => {
+			if (cameras.length > 0) {
+			var selectedCam = cameras[0];
+			$.each(cameras, (i, c) => {
+				if (c.name.indexOf('back') !== -1) {
+					selectedCam = c;
+					return false;
+				}
+			});
+
+			scanner.start(selectedCam);
+		}
+        });
         });
     </script>
 </body>
