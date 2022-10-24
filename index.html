@@ -23,7 +23,7 @@
 
 <body style="background-color: #ffff;">
     <button class="back">
-        <a  href="http://recording-telur.herokuapp.com/produksi/telur" style="text-decoration:none; color: rgb(255, 255, 255);">Kembali</a>
+        <a  href="http://recording-telur.herokuapp.com/produksi" style="text-decoration:none; color: rgb(255, 255, 255);">Kembali</a>
     </button>
     <div class="content">
         <h1 style="text-align: center; color:black">Scan Kode Ayam</h1>
@@ -38,12 +38,11 @@
 
             const getid = data;
             const lower = parseInt(getid);
-            var url = "http://recording-telur.herokuapp.com/form/"+lower+"/produksi";
+            var url = "http://recording-telur.herokuapp.com/form/"+lower+"/kode-ayam";
             // alert(url);
             // url = url.replace(':lower', lower);
             window.location.href = url;
         });
-        Instascan.Camera.getCameras().then(cameras => {
            Instascan.Camera.getCameras().then(cameras => {
 			if (cameras.length > 0) {
 			var selectedCam = cameras[0];
@@ -56,7 +55,6 @@
 
 			scanner.start(selectedCam);
 		}
-        });
         });
     </script>
 </body>
