@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>scan Pengembalian</title>
+    <title>scan kode ayam</title>
     <style>
         .content {
   position: absolute;
@@ -13,7 +13,7 @@
 }
 
 .back{
-    background-color: rgb(255, 0, 0);
+    background-color: #fff;
     width: 80px;
     height: 30px;
 }
@@ -23,11 +23,11 @@
 
 <body style="background-color: #505050;">
     <button class="back">
-        <a  href="http://silab18.herokuapp.com/public/konfirmasi-peminjaman" style="text-decoration:none; color: rgb(255, 255, 255);">Kembali</a>
+        <a  href="http://recording-telur.herokuapp.com/produksi" style="text-decoration:none; color: rgb(255, 255, 255);">Kembali</a>
     </button>
     <div class="content">
-        <h1 style="text-align: center; color:white">Scan Pengembalian Peminjaman</h1>
-        <video width="520" height="340" id="preview"></video>
+        <h1 style="text-align: center; color:white">Scan Kode Ayam</h1>
+        <video width="600px" id="preview"></video>
     </div>
     <script>
         let scanner = new Instascan.Scanner({
@@ -36,9 +36,9 @@
         scanner.addListener('scan', function (content) {
             const data = content;
 
-            const getid = data.substring(data.indexOf('_') + 1);
+            const getid = data;
             const lower = parseInt(getid);
-            var url = "http://silab18.herokuapp.com/store/"+lower+"";
+            var url = "http://recording-telur.herokuapp.com/form/"+lower+"/kode-ayam";
             // alert(url);
             // url = url.replace(':lower', lower);
             window.location.href = url;
@@ -47,7 +47,7 @@
             if (cameras.length > 0) {
                 scanner.start(cameras[0]);
             } else {
-                console.error("Não existe câmera no dispositivo!");
+                console.error("Camera Tidak Terdeteksi!");
             }
         });
     </script>
